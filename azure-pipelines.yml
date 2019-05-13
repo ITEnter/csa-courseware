@@ -32,9 +32,10 @@ steps:
     repository: andreyitce/itce-devops-cw
     containerRegistry: DockerHub
     Dockerfile: Dockerfile  
+    tags: latest
 - task: AzureWebAppContainer@1
   inputs:
     azureSubscription: 'itce-devops-cw'
     appName: 'itce-devops-cw'
-    containers: 'itce-devops-cw'
+    containers: 'andreyitce/itce-devops-cw'
 
