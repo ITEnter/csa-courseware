@@ -11,6 +11,7 @@ pool:
 
 variables:
   buildConfiguration: 'Release'
+  imageName: itce-courseware
 
 steps:
 - script: dotnet test EchoServiceTests/EchoServiceTests.csproj --logger trx
@@ -22,3 +23,23 @@ steps:
     testResultsFiles: '**/*.trx'
 - script: dotnet build EchoService/SimpleEcho.csproj --configuration $(buildConfiguration)
   displayName: 'dotnet build $(buildConfiguration)'
+- task: Docker@1
+  displayName: Build an image
+  inputs:
+    command: Build an image
+    containerregistrytype: Container Registry
+    dockerRegistryEndpoint: DockerHub
+    dockerFile: Dockerfile
+    imageName: $(imageName)
+    imageNamesPath: 
+    restartPolicy: always
+- task: Docker@1
+  displayName: Push an image
+  inputs:
+    command: Push an image
+    containerregistrytype: Container Registry
+    dockerRegistryEndpoint: DockerHub
+    dockerFile: Dockerfile
+    imageName: $(imageName)
+    imageNamesPath: 
+    restartPolicy: always
