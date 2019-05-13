@@ -11,8 +11,7 @@ namespace EchoService.Controllers
     public class EchoController : ControllerBase
     {
       
-
-        // GET api/values/5
+        // GET /api/echo/10
         [HttpGet("{age}")]
         public ActionResult<string> Get(int age)
         {
