@@ -28,7 +28,7 @@ steps:
   inputs:
     command: Build an image
     containerregistrytype: Container Registry
-    dockerRegistryEndpoint: itce-courseware
+    dockerRegistryEndpoint: DockerHub
     dockerFile: Dockerfile
     imageName: $(imageName)
     imageNamesPath: 
@@ -38,7 +38,7 @@ steps:
   inputs:
     command: Push an image
     containerregistrytype: Container Registry
-    dockerRegistryEndpoint: itce-courseware
+    dockerRegistryEndpoint: DockerHub
     dockerFile: Dockerfile
     imageName: $(imageName)
     imageNamesPath: 
