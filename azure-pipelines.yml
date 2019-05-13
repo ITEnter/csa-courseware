@@ -13,7 +13,7 @@ variables:
   buildConfiguration: 'Release'
 
 steps:
-- script: dotnet test WebApp.Tests/WebApp.Tests.csproj --logger trx
+- script: dotnet test EchoServiceTests/EchoServiceTests.csproj --logger trx
   displayName: Run unit tests
 - task: PublishTestResults@2
   condition: succeededOrFailed()
