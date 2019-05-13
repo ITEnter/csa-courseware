@@ -36,4 +36,5 @@ steps:
   inputs:
     azureSubscription: 'itce-devops-cw'
     appName: 'itce-devops-cw'
+    containers: 'andreyitce/itce-devops-cw'
 
