@@ -32,12 +32,8 @@ steps:
     repository: andreyitce/itce-devops-cw
     containerRegistry: DockerHub
     Dockerfile: Dockerfile  
-# ASP.NET Core - this should be a DockerHub triggered one, but I have one free pipeline. (;
 - task: AzureWebAppContainer@1
   inputs:
     azureSubscription: 'itce-devops-cw'
     appName: 'itce-devops-cw'
-    imageName: 'andreyitce/itce-devops-cw'
-# Build and test ASP.NET Core projects targeting .NET Core.
-# Add steps that run tests, create a NuGet package, deploy, and more:
-# https://docs.microsoft.com/azure/devops/pipelines/languages/dotnet-core
+
