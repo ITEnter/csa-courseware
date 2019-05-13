@@ -34,17 +34,9 @@ steps:
     imageNamesPath: 
     restartPolicy: always
 - task: Docker@2
-  displayName: Login to ACR
+  displayName: Build
   inputs:
-    command: login
+    command: build
+    repository: contosoRepository
     containerRegistry: DockerHub
-- task: Docker@1
-  displayName: Push an image
-  inputs:
-    command: Push an image
-    containerregistrytype: Container Registry
-    dockerRegistryEndpoint: DockerHub
-    dockerFile: Dockerfile
-    imageName: $(imageName)
-    imageNamesPath: 
-    restartPolicy: always
+
