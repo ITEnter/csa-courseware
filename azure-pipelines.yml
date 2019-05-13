@@ -37,6 +37,6 @@ steps:
   displayName: Build
   inputs:
     command: build
-    repository: contosoRepository
+    repository: itce-devops-cw
     containerRegistry: DockerHub
 
