@@ -20,5 +20,5 @@ steps:
   inputs:
     testRunner: VSTest
     testResultsFiles: '**/*.trx'
-- script: dotnet build --configuration $(buildConfiguration)
+- script: dotnet build EchoService/SimpleEcho.csproj --configuration $(buildConfiguration)
   displayName: 'dotnet build $(buildConfiguration)'
