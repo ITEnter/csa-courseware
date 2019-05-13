@@ -32,7 +32,7 @@ steps:
   displayName: Build and push
   inputs:
     command: buildAndPush
-    repository: andreyitce\itce-devops-cw
+    repository: andreyitce/itce-devops-cw
     containerRegistry: DockerHub
     Dockerfile: Dockerfile  
 
