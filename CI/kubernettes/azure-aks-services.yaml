@@ -25,7 +25,7 @@ spec:
             cpu: 250m
             memory: 256Mi
         ports:
-        - containerPort: 81
+        - containerPort: 80
           name: azure-ui-green
 ---
 apiVersion: v1
@@ -35,7 +35,7 @@ metadata:
 spec:
   type: LoadBalancer
   ports:
-  - port: 6379
+  - port: 80
   selector:
     app: azure-ui-green
 ---
@@ -78,7 +78,7 @@ metadata:
 spec:
   type: LoadBalancer
   ports:
-  - port: 6380
+  - port: 80
   selector:
     app: azure-ui-blue
 ---
