@@ -33,6 +33,7 @@ kind: Service
 metadata:
   name: azure-ui-green
 spec:
+  type: LoadBalancer
   ports:
   - port: 6379
   selector:
@@ -75,6 +76,7 @@ kind: Service
 metadata:
   name: azure-ui-blue
 spec:
+  type: LoadBalancer
   ports:
   - port: 6380
   selector:
