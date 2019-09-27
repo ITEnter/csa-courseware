@@ -1,0 +1,82 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: azure-ui-green
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: azure-ui-green
+  template:
+    metadata:
+      labels:
+        app: azure-ui-green
+    spec:
+      nodeSelector:
+        "beta.kubernetes.io/os": linux
+      containers:
+      - name: azure-ui-green
+        image: andreyitce/itce-devops-cw
+        resources:
+          requests:
+            cpu: 100m
+            memory: 128Mi
+          limits:
+            cpu: 250m
+            memory: 256Mi
+        ports:
+        - containerPort: 81
+          name: azure-ui-green
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: azure-ui-green
+spec:
+  ports:
+  - port: 6379
+  selector:
+    app: azure-ui-green
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: azure-ui-blue
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: azure-ui-blue
+  template:
+    metadata:
+      labels:
+        app: azure-ui-blue
+    spec:
+      nodeSelector:
+        "beta.kubernetes.io/os": linux
+      containers:
+      - name: azure-ui-blue
+        image: andreyitce/itce-devops-cw
+        resources:
+          requests:
+            cpu: 100m
+            memory: 128Mi
+          limits:
+            cpu: 250m
+            memory: 256Mi
+        ports:
+        - containerPort: 80
+        env:
+        - name: azure-ui-blue
+          value: "azure-ui-blue"
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: azure-ui-blue
+spec:
+  ports:
+  - port: 6380
+  selector:
+    app: azure-ui-blue
+---
