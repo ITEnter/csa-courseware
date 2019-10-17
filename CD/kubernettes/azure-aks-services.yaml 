@@ -1,0 +1,86 @@
+apiVersion: v1
+kind: Service
+metadata:
+  name: azure-back-end
+  labels: 
+    app: azure-back-end
+    service: azure-back-end
+spec:
+  ports:
+  - port: 80
+    name: http  
+  selector:
+    app: azure-back-end
+---
+apiVersion: v1
+kind: ServiceAccount
+metadata:
+  name: contemporary-devops-sa
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: azure-ui-green
+  labels:
+    app: azure-back-end
+    version: v1
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: azure-back-end
+  template:
+    metadata:
+      labels:
+        app: azure-back-end
+        version: v1
+    spec:
+      serviceAccountName: contemporary-devops-sa
+      nodeSelector:
+        "beta.kubernetes.io/os": linux
+      containers:
+      - name: azure-ui-green
+        image: andreyitce/itce-devops-cw
+        resources:
+          requests:
+            cpu: 100m
+            memory: 128Mi
+          limits:
+            cpu: 250m
+            memory: 256Mi
+        ports:
+        - containerPort: 80
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: azure-ui-blue
+  labels:
+    app: azure-back-end
+    version: v2
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: azure-back-end
+  template:
+    metadata:
+      labels:
+        app: azure-back-end
+        version: v2
+    spec:
+      nodeSelector:
+        "beta.kubernetes.io/os": linux
+      serviceAccountName: contemporary-devops-sa
+      containers:
+      - name: azure-back-end
+        image: andreyitce/itce-devops-cw
+        resources:
+          requests:
+            cpu: 100m
+            memory: 128Mi
+          limits:
+            cpu: 250m
+            memory: 256Mi
+        ports:
+        - containerPort: 80 

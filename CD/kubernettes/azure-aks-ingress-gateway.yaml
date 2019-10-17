@@ -1,0 +1,31 @@
+CI/kubernettes/azure-aks-ingress-gateway.yamlapiVersion: networking.istio.io/v1alpha3
+kind: Gateway
+metadata:
+  name: contemporary-devops-gateway
+spec:
+  selector:
+    istio: ingressgateway # use istio default controller
+  servers:
+  - port:
+      number: 80
+      name: http
+      protocol: HTTP
+    hosts:
+    - "*"
+---
+apiVersion: networking.istio.io/v1alpha3
+kind: VirtualService
+metadata:
+  name: azure-back-end-gw-vs
+spec:
+  hosts:
+  - "*"
+  gateways:
+  - contemporary-devops-gateway
+  http:
+  - match:  
+    - uri:
+        prefix: /
+    route:
+    - destination:
+        host:CI/kubernettes/azure-aks-ingress-gateway.yaml azure-back-end
