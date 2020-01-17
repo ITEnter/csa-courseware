@@ -1,4 +1,4 @@
-CI/kubernettes/azure-aks-ingress-gateway.yamlapiVersion: networking.istio.io/v1alpha3
+apiVersion: networking.istio.io/v1alpha3
 kind: Gateway
 metadata:
   name: contemporary-devops-gateway
@@ -28,4 +28,4 @@ spec:
         prefix: /
     route:
     - destination:
-        host:CI/kubernettes/azure-aks-ingress-gateway.yaml azure-back-end
+        host: azure-back-end

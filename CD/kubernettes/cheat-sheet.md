@@ -78,3 +78,9 @@ ENTRYPOINT [“/usr/sbin/nginx”,”-g”,”daemon off;”]
 EXPOSE 80
 ```
 `docker build -t myimage:latest .`
+
+
+
+az ad sp create-for-rbac --role="Contributor" --scopes="/subscriptions/8adc1d25-72b7-4d8a-87e6-9bdca36a256f/resourceGroups/ 
+kubectl config set-cluster Contemporary-Devops
+istioctl manifest apply -f ../istio.aks.yaml --logtostderr --set installPackagePath=./install/kubernetes/operator/charts
