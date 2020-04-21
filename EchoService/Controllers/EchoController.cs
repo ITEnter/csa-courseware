@@ -6,6 +6,10 @@ using Microsoft.AspNetCore.Mvc;
 
 namespace EchoService.Controllers
 {
+    /// <summary>
+    /// Determines whether a client is a teengager. ;)
+    /// </summary>
+    [Produces("application/json")]
     [Route("api/[controller]")]
     [ApiController]
     public class EchoController : ControllerBase
